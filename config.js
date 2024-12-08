@@ -30,19 +30,8 @@ const app = express();
 connectDB();
 
 // Use CORS middleware to handle cross-origin requests
-app.use(cors({
-  origin: 'https://20481-rahulyadav.github.io', // Replace this with your frontend URL or '*' to allow all origins
-  methods: ['GET', 'POST', 'OPTIONS'],  // Allow specific HTTP methods
-  allowedHeaders: ['Content-Type'],  // Allow specific headers
-}));
+app.use(cors());
 
-// Middleware to handle preflight requests (OPTIONS method)
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.status(200).end();
-});
 
 // Middleware to parse JSON bodies
 app.use(express.json());
