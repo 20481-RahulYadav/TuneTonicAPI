@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 app.use(cors(
   {
-    origin:"https://tune-tonic-api.vercel.app/"
+    origin:"https://20481-rahulyadav.github.io"
   }
 ));
 // Load environment variables from the .env file
