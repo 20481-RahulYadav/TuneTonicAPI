@@ -7,7 +7,7 @@ const cors = require('cors');
 // Load environment variables from the .env file
 dotenv.config();
 
-// Connect to the database
+// Connect to the database    
 const connectDB = async () => {
   try {
     const mongoURI = process.env.MONGO_URI;
@@ -29,9 +29,13 @@ const connectDB = async () => {
 const app = express();
 connectDB();
 
-// Use CORS middleware to handle cross-origin requests
-app.use(cors());
+// Define allowed origin for CORS
+const allowedOrigin = 'https://20481-rahulyadav.github.io';
 
+// Use CORS middleware with a specific origin
+app.use(cors({
+  origin: allowedOrigin,
+}));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
