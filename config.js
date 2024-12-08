@@ -31,14 +31,11 @@ connectDB();
 
 app.use(express.json());
 
-app.use(cors({
-  origin: 'https://20481-rahulyadav.github.io', // Allow only this origin
-  methods: ['GET', 'POST'],        // Allow GET and POST methods
-  allowedHeaders: ['Content-Type'] // Allow specific headers
-}));
-
-// Handle preflight requests
-app.options('*', cors());  // Automatically handle OPTIONS requests
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 
 
 // Define a route for GET requests to the root URL '/'
