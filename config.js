@@ -31,15 +31,15 @@ connectDB();
 
 app.use(express.json());
 
-// Enable CORS for specific origin and preflight support
 app.use(cors({
-    origin: 'http://127.0.0.1:5500', // Allow only requests from this origin
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
+  origin: 'http://127.0.0.1:5500', // Allow only this origin
+  methods: ['GET', 'POST'],        // Allow GET and POST methods
+  allowedHeaders: ['Content-Type'] // Allow specific headers
 }));
 
-// Optionally, handle preflight requests manually (this might not be necessary)
-app.options('*', cors());  // Handle all OPTIONS requests
+// Handle preflight requests
+app.options('*', cors());  // Automatically handle OPTIONS requests
+
 
 // Define a route for GET requests to the root URL '/'
 app.get('/', (req, res) => {
