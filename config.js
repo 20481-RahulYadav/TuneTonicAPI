@@ -1,8 +1,8 @@
 // Import required modules
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const cors = require('cors');
 
 // Load environment variables from the .env file
 dotenv.config();
@@ -25,32 +25,37 @@ const connectDB = async () => {
   }
 };
 
-// Initialize express and connect to DB
+// Initialize express app
 const app = express();
-connectDB();
 
 // Define allowed origin for CORS
 const allowedOrigin = 'https://20481-rahulyadav.github.io';
 
-// Use CORS middleware with a specific origin
 app.use(cors({
-  origin: 'https://20481-rahulyadav.github.io',
+  origin: 'https://20481-rahulyadav.github.io',  // Allow only this origin
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: true,
+  credentials: true, // If cookies or sessions are being used
 }));
 
-// Explicitly handling pre-flight requests
-app.options('*', cors()); // Enable pre-flight for all routes
-
+// Explicitly handle preflight (OPTIONS) requests
+app.options('*', cors());
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Define a route for GET requests to the root URL '/'
+// Example route for GET requests to the root URL '/'
 app.get('/', (req, res) => {
   res.send('Hello, your API is working!');
 });
+
+// Example API route
+app.get('/gfg-articles', (req, res) => {
+  res.json('gfg-articles');
+});
+
+// Connect to the database
+connectDB();
 
 // Start the server
 const PORT = process.env.PORT || 5000;
