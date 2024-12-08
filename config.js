@@ -4,6 +4,12 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+
+app.use(cors(
+  {
+    origin:"https://tune-tonic-api.vercel.app/"
+  }
+));
 // Load environment variables from the .env file
 dotenv.config();
 
@@ -31,15 +37,15 @@ const app = express();
 // Define allowed origin for CORS
 const allowedOrigin = 'https://20481-rahulyadav.github.io';
 
-app.use(cors({
-  origin: 'https://20481-rahulyadav.github.io',  // Allow only this origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: true, // If cookies or sessions are being used
-}));
+// app.use(cors({
+//   origin: ['https://20481-rahulyadav.github.io', 'http://127.0.0.1:5500'], // Allow these origins
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+//   credentials: true, // If cookies or sessions are being used
+// }));
 
-// Explicitly handle preflight (OPTIONS) requests
-app.options('*', cors());
+
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
