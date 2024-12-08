@@ -34,8 +34,15 @@ const allowedOrigin = 'https://20481-rahulyadav.github.io';
 
 // Use CORS middleware with a specific origin
 app.use(cors({
-  origin: allowedOrigin,
+  origin: 'https://20481-rahulyadav.github.io',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: true,
 }));
+
+// Explicitly handling pre-flight requests
+app.options('*', cors()); // Enable pre-flight for all routes
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
