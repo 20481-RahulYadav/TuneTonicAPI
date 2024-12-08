@@ -12,7 +12,7 @@
 // module.exports = { hashPassword, comparePassword };
 
 
-const storePassword = (password) => {
+const hashPassword = (password) => {
     // Store the password directly (not secure)
     return password;
 };
@@ -22,4 +22,4 @@ const comparePassword = (password, storedPassword) => {
     return password === storedPassword;
 };
 
-module.exports = { storePassword, comparePassword };
+module.exports = { hashPassword, comparePassword };
