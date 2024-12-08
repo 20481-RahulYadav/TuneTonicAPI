@@ -32,7 +32,7 @@ connectDB();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://127.0.0.1:5500', // Allow only this origin
+  origin: 'https://20481-rahulyadav.github.io', // Allow only this origin
   methods: ['GET', 'POST'],        // Allow GET and POST methods
   allowedHeaders: ['Content-Type'] // Allow specific headers
 }));
